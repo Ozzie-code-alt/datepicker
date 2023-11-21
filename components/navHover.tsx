@@ -53,7 +53,7 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ]
 
-export function NavigationMenuDemo({ isOpen, onClose}) {
+export function NavigationMenuDemo({ isOpen, onClose, form}) {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose}   style={{
         content: {

@@ -1,13 +1,13 @@
-"use client"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { CalendarIcon } from "@radix-ui/react-icons"
-import { format } from "date-fns"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { NavigationMenuDemo } from "@/components/navHover"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { format } from "date-fns";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { NavigationMenuDemo } from "@/components/navHover";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Form,
   FormControl,
@@ -16,29 +16,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { toast } from "@/components/ui/use-toast"
-import { useState } from "react"
+} from "@/components/ui/popover";
+import { toast } from "@/components/ui/use-toast";
+import { useState } from "react";
 
 const FormSchema = z.object({
   dob: z.date({
     required_error: "A date of birth is required.",
   }),
-  appointmentTime : z.string({
-    required_error: "Appointment time is required "
-  })
-})
+  appointmentTime: z.string({
+    required_error: "Appointment time is required ",
+  }),
+});
 
 function CalendarForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-  })
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
+  });
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
       title: "You submitted the following values:",
@@ -47,8 +47,8 @@ function CalendarForm() {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    })
-    console.log(data)
+    });
+    console.log(data);
   }
 
   return (
@@ -85,16 +85,19 @@ function CalendarForm() {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) =>
-                      date < new Date()
-                    }
+                    disabled={(date) => date < new Date()}
                     initialFocus
-                    onDayClick={()=>{setModalOpen(true)}}
+                    onDayClick={() => {
+                      setModalOpen(true);
+                    }}
                   />
                 </PopoverContent>
-                  <NavigationMenuDemo isOpen={modalOpen} onClose={()=> setModalOpen(false)}/>
+                <NavigationMenuDemo
+                  isOpen={modalOpen}
+                  form={form}
+                  onClose={() => setModalOpen(false)}
+                />
               </Popover>
-
 
               <FormDescription>
                 Your date of birth is used to calculate your age.
@@ -104,11 +107,29 @@ function CalendarForm() {
           )}
         />
 
-  
+        <FormField
+          control={form.control}
+          name="appointmentTime"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>Appointment Time</FormLabel>
+              <FormControl>
+                <input
+                  type="time-local"
+                  className="form-control" // replace with your styling class
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>Select your appointment time.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>
-  )
+  );
 }
 
-export default CalendarForm
+export default CalendarForm;
