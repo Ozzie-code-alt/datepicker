@@ -92,11 +92,7 @@ function CalendarForm() {
                     }}
                   />
                 </PopoverContent>
-                <NavigationMenuDemo
-                  isOpen={modalOpen}
-                  form={form}
-                  onClose={() => setModalOpen(false)}
-                />
+          
               </Popover>
 
               <FormDescription>
@@ -112,15 +108,13 @@ function CalendarForm() {
           name="appointmentTime"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Appointment Time</FormLabel>
               <FormControl>
-                <input
-                  type="time-local"
-                  className="form-control" // replace with your styling class
-                  {...field}
+                  <NavigationMenuDemo
+                  isOpen={modalOpen}
+                  onClose={() => setModalOpen(false)}
+                  field = {field}
                 />
               </FormControl>
-              <FormDescription>Select your appointment time.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

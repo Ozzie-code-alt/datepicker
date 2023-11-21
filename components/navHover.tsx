@@ -53,7 +53,7 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ]
 
-export function NavigationMenuDemo({ isOpen, onClose, form}) {
+export function NavigationMenuDemo({ isOpen, onClose, field}) {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose}   style={{
         content: {
@@ -74,23 +74,28 @@ export function NavigationMenuDemo({ isOpen, onClose, form}) {
                   >
                    
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
+                      Schedule Your Appointment With Promises
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
+                    Snap SNap Pic pic wow good pic wow
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
+              <ListItem title="9 am" onClick={()=>{field.onChange("9AM")}}>
+                Schedule it for 9 am ?
               </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
+              <ListItem  title="10 am"onClick={()=>{field.onChange("10AM")}}>
+              Schedule it for 10 am ?
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
+              <ListItem  title="11 am"onClick={()=>{field.onChange("11AM")}}>
+              Schedule it for 11 am ?
+              </ListItem>
+              <ListItem  title="2 pm"onClick={()=>{field.onChange("2PM")}}>
+              Schedule it for 2 pm ?
+              </ListItem>
+              <ListItem  title="3 pm"onClick={()=>{field.onChange("3PM")}}>
+              Schedule it for 3 pm ?
               </ListItem>
             </ul>
         </NavigationMenuItem>
