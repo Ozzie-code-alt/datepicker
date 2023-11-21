@@ -82,19 +82,19 @@ export function NavigationMenuDemo({ isOpen, onClose, field}) {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem title="9 am" onClick={()=>{field.onChange("9AM")}}>
+              <ListItem title="9 am" onClick={()=>{field.onChange("9AM"); onClose() }}>
                 Schedule it for 9 am ?
               </ListItem>
-              <ListItem  title="10 am"onClick={()=>{field.onChange("10AM")}}>
+              <ListItem  title="10 am"onClick={()=>{field.onChange("10AM"); onClose() }}>
               Schedule it for 10 am ?
               </ListItem>
-              <ListItem  title="11 am"onClick={()=>{field.onChange("11AM")}}>
+              <ListItem  title="11 am"onClick={()=>{field.onChange("11AM"); onClose() }}>
               Schedule it for 11 am ?
               </ListItem>
-              <ListItem  title="2 pm"onClick={()=>{field.onChange("2PM")}}>
+              <ListItem  title="2 pm"onClick={()=>{field.onChange("2PM"); onClose() }}>
               Schedule it for 2 pm ?
               </ListItem>
-              <ListItem  title="3 pm"onClick={()=>{field.onChange("3PM")}}>
+              <ListItem  title="3 pm" onClick={()=>{field.onChange("3PM"); onClose() }}>
               Schedule it for 3 pm ?
               </ListItem>
             </ul>
