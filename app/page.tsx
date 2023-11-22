@@ -8,6 +8,7 @@ import { NavigationMenuDemo } from "@/components/navHover";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import axios from "axios"
 import {
   Form,
   FormControl,
@@ -39,16 +40,17 @@ function CalendarForm() {
     resolver: zodResolver(FormSchema),
   });
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
+     await fetch("http://localhost:3000/api/apointments", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
   }
 
   return (
